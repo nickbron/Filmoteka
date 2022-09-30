@@ -1,0 +1,18 @@
+.App {
+  /* text-align: center; */
+}
+
+.header {
+  /* height: 230px; */
+  /* background-image: url("../src/Images/header_desktop.jpg"); */
+}
+
+.header__link{
+  /* text-decoration: none; */
+}
+.header__title {
+  /* font-size: 30px; */
+  /* font-weight: 500; */
+  /* margin-left: 10px; */
+  /* color: aliceblue; */
+}
