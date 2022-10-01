@@ -16,7 +16,7 @@ export default function CardFilm({ movieId, image, title, genre, date }) {
         <Card sx={{ height: "100%" }}>
           <CardMedia
             component="img"
-            height="398"
+            height="auto"
             image={`https://image.tmdb.org/t/p/w500${image}`}
             alt={title}
           />

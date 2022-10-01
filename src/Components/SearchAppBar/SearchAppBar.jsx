@@ -6,7 +6,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import Divider from "@mui/material/Divider";
-import { SearchFilmByName } from "../../Services/api";
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",

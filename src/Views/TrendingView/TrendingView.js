@@ -28,7 +28,6 @@ export default function TrendingView() {
 
   useEffect(() => {
     if (filmName === "") {
-      console.log("filmName:", filmName);
       return;
     }
     async function fetchData(filmName) {
@@ -62,7 +61,7 @@ export default function TrendingView() {
               <CardFilm
                 key={movie.id}
                 movieId={movie.id}
-                image={movie.backdrop_path}
+                image={movie.poster_path}
                 title={movie.title}
                 genre={movie.genre_ids}
                 date={movie.release_date}
