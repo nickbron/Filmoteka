@@ -8,10 +8,10 @@ export default function Header() {
   return (
     <>
       <AppBar
-        sx={{ backgroundImage: `url(${headerBackground})`, height: "130px" }}
-        position="static"
+        sx={{ backgroundImage: `url(${headerBackground})`, height: "70px" }}
+        position="fixed"
       >
-        <Toolbar sx={{ flexWrap: "wrap" }}>
+        <Toolbar sx={{ justifyContent: "space-between" }}>
           <IconButton edge="start" color="inherit">
             <TheatersIcon />
             <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}>

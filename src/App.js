@@ -7,10 +7,11 @@ import AboutView from "./Views/About/AboutView";
 import TrendingView from "./Views/TrendingView/TrendingView";
 import Header from "./Components/Header/Header";
 import Container from "@mui/material/Container";
+import Footer from "Components/Footer/Footer";
 
 export default function App() {
   return (
-    <div className="App">
+    <>
       <Header />
       <Container sx={{ mt: "1rem" }}>
         <Routes>
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="films/:filmId" element={<FilmDetailView />} />
         </Routes>
       </Container>
-    </div>
+      <Footer description="Created by Balabukh Nick." />
+    </>
   );
 }

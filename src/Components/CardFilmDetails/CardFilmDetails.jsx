@@ -25,7 +25,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function DetailsFilm({
+export default function CardFilmDetails({
   image,
   title,
   vote,
@@ -41,15 +41,24 @@ export default function DetailsFilm({
   };
 
   return (
-    <Card sx={{ height: "auto" }}>
+    <Card sx={{ maxWidth: "50%" }}>
       <CardHeader title={title} subheader={date} />
       <CardMedia
         component="img"
-        height="25%"
+        width="396 px"
         image={`https://image.tmdb.org/t/p/w500${image}`}
         alt={title}
       />
       <CardContent>
+        <Typography paragraph variant="h6" component="h2">
+          Vote/Votes {vote} / {votes}
+        </Typography>
+        <Typography paragraph variant="body1" color="ButtonText">
+          Popularity {popularity}
+        </Typography>
+
+        <Typography paragraph>Original Title {title}</Typography>
+        <Typography paragraph>Genre {genre}</Typography>
         <Typography variant="body1" color="text.secondary">
           This impressive paella is a perfect party dish and a fun meal to cook
           together with your guests. Add 1 cup of frozen peas along with the

@@ -24,7 +24,11 @@ export default function CardFilm({ movieId, image, title, genre, date }) {
             <Typography gutterBottom variant="h5" component="div">
               {title}
             </Typography>
-            <Typography gutterBottom variant="h7" component="div">
+            <Typography
+              display="block"
+              variant="caption"
+              color="text.secondary"
+            >
               {date && new Date(date).getFullYear()}
             </Typography>
           </CardContent>

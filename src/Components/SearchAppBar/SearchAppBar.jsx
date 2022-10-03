@@ -7,23 +7,6 @@ import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import Divider from "@mui/material/Divider";
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
-  },
-}));
-
 export default function SearchAppBar({ onSearch }) {
   const handleSearch = (e) => {
     e.preventDefault();
@@ -39,7 +22,11 @@ export default function SearchAppBar({ onSearch }) {
       component="form"
       elevation={8}
       onSubmit={handleSearch}
-      sx={{ display: "flex", alignItems: "center", width: 400 }}
+      sx={{
+        mt: "100px",
+        display: "flex",
+        width: "100%",
+      }}
     >
       <IconButton
         type="submit"
@@ -50,11 +37,12 @@ export default function SearchAppBar({ onSearch }) {
         <SearchIcon />
       </IconButton>
       <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-      <StyledInputBase
+      <InputBase
         name="filmName"
         placeholder="Search Film…"
         inputProps={{ "aria-label": "search" }}
         autoComplete="off"
+        sx={{ ml: 1, flex: 1 }}
       />
     </Paper>
   );
