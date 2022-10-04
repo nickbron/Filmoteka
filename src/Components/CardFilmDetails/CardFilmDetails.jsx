@@ -10,9 +10,9 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
+import Box from "@mui/material/Box";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -41,52 +41,68 @@ export default function CardFilmDetails({
   };
 
   return (
-    <Card sx={{ maxWidth: "50%" }}>
-      <CardHeader title={title} subheader={date} />
-      <CardMedia
-        component="img"
-        width="396 px"
-        image={`https://image.tmdb.org/t/p/w500${image}`}
-        alt={title}
-      />
-      <CardContent>
-        <Typography paragraph variant="h6" component="h2">
-          Vote/Votes {vote} / {votes}
-        </Typography>
-        <Typography paragraph variant="body1" color="ButtonText">
-          Popularity {popularity}
-        </Typography>
+    <Card
+      sx={{
+        bgcolor: "ButtonShadow",
+        mt: "8rem",
+      }}
+    >
+      <Card
+        sx={{
+          display: "flex",
+          bgcolor: "ButtonShadow",
+        }}
+      >
+        <Box sx={{ width: "100%" }}>
+          <CardHeader title={title} subheader={date} />
+          <CardMedia
+            component="img"
+            width="396 px"
+            image={`https://image.tmdb.org/t/p/w500${image}`}
+            alt={title}
+          />
+        </Box>
+        <Box sx={{}}>
+          <CardContent>
+            <Typography paragraph variant="h6" component="h2">
+              Vote/Votes {vote} / {votes}
+            </Typography>
+            <Typography paragraph variant="body1" color="ButtonText">
+              Popularity {popularity}
+            </Typography>
 
-        <Typography paragraph>Original Title {title}</Typography>
-        <Typography paragraph>Genre {genre}</Typography>
-        <Typography variant="body1" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>About:</Typography>
-          <Typography paragraph>{overview}</Typography>
-        </CardContent>
-      </Collapse>
+            <Typography paragraph>Original Title {title}</Typography>
+            <Typography paragraph>Genre {genre}</Typography>
+            <Typography variant="body1" align="justify" color="text.secondary">
+              {overview}
+            </Typography>
+          </CardContent>
+        </Box>
+      </Card>
+      <Box>
+        <CardActions disableSpacing>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton aria-label="share">
+            <ShareIcon />
+          </IconButton>
+          <ExpandMore
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </ExpandMore>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <Typography paragraph>About:</Typography>
+            <Typography paragraph>{overview}</Typography>
+          </CardContent>
+        </Collapse>
+      </Box>
     </Card>
   );
 }

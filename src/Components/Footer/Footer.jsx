@@ -5,16 +5,11 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Link from "@mui/material/Link";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
+import { calculateNewValue } from "@testing-library/user-event/dist/utils";
 
-// const useStyles = makeStyles((theme) => ({
-//   footer: {
-//     backgroundColor: theme.palette.background.paper,
-//     padding: theme.spacing(6),
-//   },
-// }));
 function Copyright() {
   return (
-    <React.Fragment>
+    <>
       {"© "}
       <Link
         color="inherit"
@@ -24,7 +19,7 @@ function Copyright() {
         Nick_bron
       </Link>{" "}
       {new Date().getFullYear()}
-    </React.Fragment>
+    </>
   );
 }
 
@@ -33,18 +28,13 @@ export default function Footer({ description }) {
     <Typography
       component="footer"
       sx={{
-        // display: "flex",
-
-        flexDirection: "column",
-        alignItems: "center",
         bgcolor: "ButtonShadow",
-
         height: 80,
         mt: 80,
       }}
     >
       <Container maxWidth="lg">
-        <Typography variant="h6" align="center" gutterBottom>
+        <Typography variant="h6" align="center" gutterBottom paddingTop={1}>
           <Copyright />
         </Typography>
         <Typography
