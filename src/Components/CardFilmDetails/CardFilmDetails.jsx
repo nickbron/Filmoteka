@@ -44,6 +44,7 @@ export default function CardFilmDetails({
     <Card
       sx={{
         bgcolor: "ButtonShadow",
+        boxShadow: 3,
         mt: "8rem",
       }}
     >
@@ -54,7 +55,6 @@ export default function CardFilmDetails({
         }}
       >
         <Box sx={{ width: "100%" }}>
-          <CardHeader title={title} subheader={date} />
           <CardMedia
             component="img"
             width="396 px"
@@ -63,16 +63,21 @@ export default function CardFilmDetails({
           />
         </Box>
         <Box sx={{}}>
+          <CardHeader title={title} subheader={new Date(date).getFullYear()} />
           <CardContent>
             <Typography paragraph variant="h6" component="h2">
-              Vote/Votes {vote} / {votes}
+              Vote/Votes: {vote} / {votes}
             </Typography>
-            <Typography paragraph variant="body1" color="ButtonText">
-              Popularity {popularity}
+            <Typography paragraph variant="h6" component="h2">
+              Popularity: {popularity}
             </Typography>
 
-            <Typography paragraph>Original Title {title}</Typography>
-            <Typography paragraph>Genre {genre}</Typography>
+            <Typography paragraph variant="h6" component="h2">
+              Original Title: {title}
+            </Typography>
+            <Typography paragraph variant="h6" component="h2">
+              Genre:
+            </Typography>
             <Typography variant="body1" align="justify" color="text.secondary">
               {overview}
             </Typography>
@@ -98,8 +103,7 @@ export default function CardFilmDetails({
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph>About:</Typography>
-            <Typography paragraph>{overview}</Typography>
+            <Typography paragraph>Top Billed Cast:</Typography>
           </CardContent>
         </Collapse>
       </Box>

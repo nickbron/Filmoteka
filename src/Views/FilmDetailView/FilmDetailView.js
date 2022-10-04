@@ -27,7 +27,6 @@ export default function FilmDetailView() {
 
   return (
     <>
-      {/* <h1>FILM {filmId}</h1> */}
       {film && (
         <CardFilmDetails
           image={film.poster_path}

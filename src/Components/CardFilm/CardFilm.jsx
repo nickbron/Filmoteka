@@ -12,8 +12,8 @@ export default function CardFilm({ movieId, image, title, genre, date }) {
 
   return (
     <Grid item xs={12} md={4}>
-      <Link to={`${pathname}/${movieId}`}>
-        <Card sx={{ height: "100%" }}>
+      <Link to={`${pathname}/${movieId}`} style={{ textDecoration: "none" }}>
+        <Card sx={{ height: "100%", bgcolor: "ButtonShadow", boxShadow: 3 }}>
           <CardMedia
             component="img"
             height="auto"
@@ -21,21 +21,23 @@ export default function CardFilm({ movieId, image, title, genre, date }) {
             alt={title}
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography
+              variant="h5"
+              gutterBottom
+              textAlign="center"
+              fontStyle="oblique"
+            >
               {title}
             </Typography>
             <Typography
               display="block"
-              variant="caption"
+              variant="h6"
               color="text.secondary"
+              textAlign="center"
             >
               {date && new Date(date).getFullYear()}
             </Typography>
           </CardContent>
-          <CardActions>
-            <Button size="small">Share</Button>
-            <Button size="small">Learn More</Button>
-          </CardActions>
         </Card>
       </Link>
     </Grid>
