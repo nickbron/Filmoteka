@@ -1,18 +1,20 @@
 import { useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
-import { styled } from "@mui/material/styles";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardHeader from "@mui/material/CardHeader";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Favorite from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Collapse from "@mui/material/Collapse";
-import Box from "@mui/material/Box";
+import {
+  Checkbox,
+  Box,
+  Collapse,
+  CardMedia,
+  Typography,
+  CardContent,
+  CardActions,
+  IconButton,
+  Card,
+  styled,
+} from "@mui/material";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -50,63 +52,65 @@ export default function CardFilmDetails({
     >
       <Card
         sx={{
-          display: "flex",
-          bgcolor: "ButtonShadow",
+          display: { xs: "block", sm: "flex" },
+          bgcolor: "inherit",
         }}
       >
-        <Box sx={{ width: "100%" }}>
+        <Box>
           <CardMedia
             component="img"
-            width="396 px"
+            height="auto"
             image={`https://image.tmdb.org/t/p/w500${image}`}
             alt={title}
           />
         </Box>
-        <Box sx={{}}>
-          <CardHeader title={title} subheader={new Date(date).getFullYear()} />
-          <CardContent>
-            <Typography paragraph variant="h6" component="h2">
-              Vote/Votes: {vote} / {votes}
-            </Typography>
-            <Typography paragraph variant="h6" component="h2">
-              Popularity: {popularity}
-            </Typography>
 
-            <Typography paragraph variant="h6" component="h2">
-              Original Title: {title}
-            </Typography>
-            <Typography paragraph variant="h6" component="h2">
-              Genre:
-            </Typography>
-            <Typography variant="body1" align="justify" color="text.secondary">
-              {overview}
-            </Typography>
-          </CardContent>
-        </Box>
+        <CardContent>
+          <Typography paragraph variant="h4" component="h1">
+            {title} ({new Date(date).getFullYear()})
+          </Typography>
+          <Typography paragraph variant="h6" component="h2">
+            Vote/Votes: {vote} / {votes}
+          </Typography>
+          <Typography paragraph variant="h6" component="h2">
+            Popularity: {popularity}
+          </Typography>
+          <Typography paragraph variant="h6" component="h2">
+            Original Title: {title}
+          </Typography>
+          <Typography paragraph variant="h6" component="h2">
+            Genre:
+          </Typography>
+          <Typography variant="body1" align="justify" color="text.secondary">
+            {overview}
+          </Typography>
+        </CardContent>
       </Card>
-      <Box>
-        <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
-          <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </ExpandMore>
-        </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            <Typography paragraph>Top Billed Cast:</Typography>
-          </CardContent>
-        </Collapse>
-      </Box>
+
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <Checkbox
+            icon={<FavoriteBorder />}
+            checkedIcon={<Favorite sx={{ color: "red" }} />}
+          />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        <ExpandMore
+          expand={expanded}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ExpandMoreIcon />
+        </ExpandMore>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>Top Billed Cast:</Typography>
+        </CardContent>
+      </Collapse>
     </Card>
   );
 }

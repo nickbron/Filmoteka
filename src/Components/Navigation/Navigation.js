@@ -16,9 +16,9 @@ import { NavLink } from "react-router-dom";
 const rightLink = {
   color: "common.white",
   ml: 3,
-  "&.active": {
-    color: "blue",
-  },
+  // "&.active": {
+  //   color: "blue",
+  // },
   "&:hover, &:focus": {
     color: "blue",
   },
@@ -45,15 +45,6 @@ export default function Navigation() {
           sx={rightLink}
         >
           MyLibrary
-        </Link>
-        <Link
-          variant="h6"
-          underline="none"
-          component={NavLink}
-          to="/about"
-          sx={rightLink}
-        >
-          About
         </Link>
       </Box>
     </>

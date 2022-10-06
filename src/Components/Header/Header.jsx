@@ -1,8 +1,12 @@
-import { AppBar, IconButton, Toolbar, Typography, Box } from "@mui/material";
+import { AppBar, IconButton, Toolbar, Typography, styled } from "@mui/material";
 import TheatersIcon from "@mui/icons-material/Theaters";
-import SearchAppBar from "../SearchAppBar/SearchAppBar";
 import headerBackground from "../../Images/header_desktop.jpg";
 import Navigation from "../Navigation/Navigation";
+
+const StyledToolBar = styled(Toolbar)({
+  display: "flex",
+  justifyContent: "space-between",
+});
 
 export default function Header() {
   return (
@@ -11,15 +15,18 @@ export default function Header() {
         sx={{ backgroundImage: `url(${headerBackground})`, height: "70px" }}
         position="fixed"
       >
-        <Toolbar sx={{ justifyContent: "space-between" }}>
+        <StyledToolBar>
           <IconButton edge="start" color="inherit">
             <TheatersIcon />
-            <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}>
+            <Typography
+              variant="h6"
+              sx={{ display: { xs: "none", sm: "block" } }}
+            >
               Filmoteka
             </Typography>
           </IconButton>
           <Navigation />
-        </Toolbar>
+        </StyledToolBar>
       </AppBar>
     </>
   );

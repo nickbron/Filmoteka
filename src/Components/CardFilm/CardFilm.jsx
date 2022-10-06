@@ -19,6 +19,7 @@ export default function CardFilm({ movieId, image, title, genre, date }) {
             height="auto"
             image={`https://image.tmdb.org/t/p/w500${image}`}
             alt={title}
+            loading="lazy"
           />
           <CardContent>
             <Typography
