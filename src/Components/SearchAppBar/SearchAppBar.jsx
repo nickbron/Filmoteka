@@ -1,17 +1,21 @@
-import { useState, useEffect } from "react";
-import { styled, alpha } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
-import Box from "@mui/material/Box";
+import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import Paper from "@mui/material/Paper";
-import IconButton from "@mui/material/IconButton";
-import Divider from "@mui/material/Divider";
+import {
+  Alert,
+  Divider,
+  IconButton,
+  InputBase,
+  Paper,
+  Snackbar,
+} from "@mui/material";
 
 export default function SearchAppBar({ onSearch }) {
+  const [openAlert, setOpenAlert] = useState(false);
+
   const handleSearch = (e) => {
     e.preventDefault();
     if (e.target.elements.filmName.value.trim() === "") {
-      alert("Enter Film");
+      setOpenAlert(true);
       return;
     }
     onSearch(e.target.elements.filmName.value);
@@ -44,6 +48,17 @@ export default function SearchAppBar({ onSearch }) {
         autoComplete="off"
         sx={{ ml: 1, flex: 1 }}
       />
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        open={openAlert}
+        autoHideDuration={1000}
+        onClose={() => {
+          setOpenAlert(false);
+        }}
+        // message="Note archived"
+      >
+        <Alert severity="error">Please Enter Film Name!</Alert>
+      </Snackbar>
     </Paper>
   );
 }

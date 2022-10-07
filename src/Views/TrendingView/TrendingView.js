@@ -1,18 +1,18 @@
-import { Grid, useTheme } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useState, useEffect } from "react";
-import { useHref } from "react-router-dom";
 import CardFilm from "Components/CardFilm/CardFilm";
 import SearchAppBar from "Components/SearchAppBar/SearchAppBar";
 import { GetTrendingFilms, SearchFilmByName } from "Services/api";
+import PaginationControlled from "Components/PaginationControlled/PaginationControlled";
 
 export default function TrendingView() {
   const [movies, setMovies] = useState(null);
   const [filmName, setfilmName] = useState("");
-
+  const [page, setPage] = useState(1);
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await GetTrendingFilms();
+        const response = await GetTrendingFilms(page);
         if (response.status === 200) {
           setMovies(response.data.results);
         } else {
@@ -24,7 +24,7 @@ export default function TrendingView() {
       }
     }
     fetchData();
-  }, []);
+  }, [page]);
 
   useEffect(() => {
     if (filmName === "") {
@@ -50,6 +50,9 @@ export default function TrendingView() {
   const handleSubmit = (movieName) => {
     setfilmName(movieName);
   };
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
 
   return (
     <>
@@ -70,6 +73,7 @@ export default function TrendingView() {
           </Grid>
         )}
       </div>
+      <PaginationControlled onPage={handleChange} page={page} />
     </>
   );
 }
