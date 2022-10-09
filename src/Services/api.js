@@ -29,11 +29,11 @@ export const GetReviewsByFilmId = async (id) => {
   });
 };
 
-export const SearchFilmByName = async (query) => {
-  return await axios.get(`/search/movie`, {
+export const SearchFilmByName = async (query, page) => {
+  return await axios.get(`/search/movie?page=${page}`, {
     params: {
       query,
-      page: 1,
+      page,
       include_adult: false,
     },
   });

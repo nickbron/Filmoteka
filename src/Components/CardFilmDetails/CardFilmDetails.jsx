@@ -15,6 +15,7 @@ import {
   Card,
   styled,
 } from "@mui/material";
+import CardActors from "Components/CardActors/CardActors";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -28,6 +29,7 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function CardFilmDetails({
+  idFilm,
   image,
   title,
   vote,
@@ -108,7 +110,8 @@ export default function CardFilmDetails({
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Top Billed Cast:</Typography>
+          <Typography paragraph>Top Billed Cast: </Typography>
+          <CardActors idFilm={idFilm} />
         </CardContent>
       </Collapse>
     </Card>

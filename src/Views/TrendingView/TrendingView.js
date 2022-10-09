@@ -1,20 +1,21 @@
 import { Grid } from "@mui/material";
 import { useState, useEffect } from "react";
 import CardFilm from "Components/CardFilm/CardFilm";
-import SearchAppBar from "Components/SearchAppBar/SearchAppBar";
-import { GetTrendingFilms, SearchFilmByName } from "Services/api";
+import { GetTrendingFilms } from "Services/api";
 import PaginationControlled from "Components/PaginationControlled/PaginationControlled";
 
 export default function TrendingView() {
   const [movies, setMovies] = useState(null);
-  const [filmName, setfilmName] = useState("");
   const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await GetTrendingFilms(page);
         if (response.status === 200) {
           setMovies(response.data.results);
+          setTotalPages(response.data.total_pages);
         } else {
           throw new Error("Error - " + response.status);
         }
@@ -26,40 +27,15 @@ export default function TrendingView() {
     fetchData();
   }, [page]);
 
-  useEffect(() => {
-    if (filmName === "") {
-      return;
-    }
-    async function fetchData(filmName) {
-      try {
-        const response = await SearchFilmByName(filmName);
-        if (response.status === 200) {
-          console.log(response.data.results);
-          setMovies(response.data.results);
-        } else {
-          throw new Error("Error - " + response.status);
-        }
-      } catch (error) {
-        console.log("rejected   " + error.message);
-        return null;
-      }
-    }
-    fetchData(filmName);
-  }, [filmName]);
-
-  const handleSubmit = (movieName) => {
-    setfilmName(movieName);
-  };
   const handleChange = (event, value) => {
     setPage(value);
   };
 
   return (
     <>
-      <SearchAppBar onSearch={handleSubmit} />
       <div>
         {movies && (
-          <Grid container spacing={2} sx={{ mt: "1rem" }}>
+          <Grid container spacing={2} sx={{ mt: "5rem" }}>
             {movies.map((movie) => (
               <CardFilm
                 key={movie.id}
@@ -72,8 +48,12 @@ export default function TrendingView() {
             ))}
           </Grid>
         )}
+        <PaginationControlled
+          count={totalPages}
+          onPage={handleChange}
+          page={page}
+        />
       </div>
-      <PaginationControlled onPage={handleChange} page={page} />
     </>
   );
 }

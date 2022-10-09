@@ -24,7 +24,16 @@ export default function Navigation() {
           to="/films"
           sx={rightLink}
         >
-          Home
+          Films
+        </Link>
+        <Link
+          variant="h6"
+          underline="none"
+          component={NavLink}
+          to="/search"
+          sx={rightLink}
+        >
+          Search
         </Link>
         <Link
           variant="h6"

@@ -1,17 +1,21 @@
 import { Card, CardContent, CardMedia, Grid, Typography } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
+import noImage from "../../Images/noImage.jpg";
 
 export default function CardFilm({ movieId, image, title, genre, date }) {
+  const newImage =
+    image === null ? `${noImage}` : `https://image.tmdb.org/t/p/w500${image}`;
+
   const { pathname } = useLocation();
 
   return (
-    <Grid item xs={12} md={4}>
+    <Grid item xs={6} md={3}>
       <Link to={`${pathname}/${movieId}`} style={{ textDecoration: "none" }}>
         <Card sx={{ height: "100%", bgcolor: "ButtonShadow", boxShadow: 3 }}>
           <CardMedia
             component="img"
             height="auto"
-            image={`https://image.tmdb.org/t/p/w500${image}`}
+            image={newImage}
             alt={title}
             loading="lazy"
           />
@@ -26,7 +30,7 @@ export default function CardFilm({ movieId, image, title, genre, date }) {
             </Typography>
             <Typography
               display="block"
-              variant="h6"
+              variant="h7"
               color="text.secondary"
               textAlign="center"
             >

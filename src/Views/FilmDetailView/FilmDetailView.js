@@ -29,6 +29,7 @@ export default function FilmDetailView() {
     <>
       {film && (
         <CardFilmDetails
+          idFilm={filmId}
           image={film.poster_path}
           title={film.original_title}
           vote={film.vote_average}
