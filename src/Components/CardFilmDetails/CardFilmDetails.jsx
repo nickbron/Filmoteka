@@ -15,7 +15,7 @@ import {
   Card,
   styled,
 } from "@mui/material";
-import CardActors from "Components/CardActors/CardActors";
+import ActorsView from "Views/ActorsView/ActorsView";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -111,7 +111,7 @@ export default function CardFilmDetails({
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>Top Billed Cast: </Typography>
-          <CardActors idFilm={idFilm} />
+          <ActorsView idFilm={idFilm} />
         </CardContent>
       </Collapse>
     </Card>

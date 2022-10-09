@@ -1,9 +1,9 @@
 import { Grid } from "@mui/material";
-import CardFilm from "Components/CardFilm/CardFilm";
+import CardActor from "Components/CardActors/CardActor";
 import { useEffect, useState } from "react";
 import { GetActorsByFilmId } from "Services/api";
 
-export default function CardActors({ idFilm }) {
+export default function ActorsView({ idFilm }) {
   const [actors, setActors] = useState("");
 
   useEffect(() => {
@@ -28,11 +28,11 @@ export default function CardActors({ idFilm }) {
       {actors && (
         <Grid container spacing={2} sx={{ mt: "1rem" }}>
           {actors.map((actor) => (
-            <CardFilm
+            <CardActor
               key={actor.id}
               image={actor.profile_path}
-              title={actor.name}
-            ></CardFilm>
+              name={actor.name}
+            ></CardActor>
           ))}
         </Grid>
       )}
