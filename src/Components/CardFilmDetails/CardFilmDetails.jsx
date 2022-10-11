@@ -113,7 +113,7 @@ export default function CardFilmDetails({
           </Typography>
         </CardContent>
       </Card>
-      <ResponsivePlayer url={url} />
+      {url && <ResponsivePlayer url={url} />}
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <Checkbox
