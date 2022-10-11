@@ -3,6 +3,7 @@ import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import YouTubeIcon from "@mui/icons-material/YouTube";
 import {
   Checkbox,
   Box,
@@ -16,6 +17,8 @@ import {
   styled,
 } from "@mui/material";
 import ActorsView from "Views/ActorsView/ActorsView";
+import ResponsivePlayer from "Components/ResponsivePlayer/ResponsivePlayer";
+import { GetVideoByFilmId } from "Services/api";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -40,8 +43,30 @@ export default function CardFilmDetails({
   date,
 }) {
   const [expanded, setExpanded] = useState(false);
+  const [url, setUrl] = useState(null);
+
+  async function fetchData(id) {
+    try {
+      const response = await GetVideoByFilmId(id);
+      if (response.status === 200) {
+        setUrl(
+          "https://www.youtube.com/watch?v=" + response.data.results[0].key
+        );
+      } else {
+        throw new Error("Error - " + response.status);
+      }
+    } catch (error) {
+      console.log("rejected   " + error.message);
+      return null;
+    }
+  }
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
+  };
+
+  const handleVideoClick = () => {
+    fetchData(idFilm);
   };
 
   return (
@@ -88,7 +113,7 @@ export default function CardFilmDetails({
           </Typography>
         </CardContent>
       </Card>
-
+      <ResponsivePlayer url={url} />
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <Checkbox
@@ -96,8 +121,8 @@ export default function CardFilmDetails({
             checkedIcon={<Favorite sx={{ color: "red" }} />}
           />
         </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
+        <IconButton onClick={handleVideoClick} aria-label="watch">
+          <YouTubeIcon />
         </IconButton>
         <ExpandMore
           expand={expanded}

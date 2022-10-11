@@ -21,6 +21,10 @@ export const GetActorsByFilmId = async (id) => {
   return await axios.get(`/movie/${id}/credits`);
 };
 
+export const GetVideoByFilmId = async (id) => {
+  return await axios.get(`/movie/${id}/videos`);
+};
+
 export const GetReviewsByFilmId = async (id) => {
   return await axios.get(`/movie/${id}/reviews`, {
     params: {
