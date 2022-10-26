@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { GetFilmByID } from "../../Services/api";
 
-export default function FilmDetailView() {
+export default function FilmDetailView({ updateNumberFavFilms }) {
   const { filmId } = useParams();
   const [film, setFilm] = useState(null);
+  const [checked, setChecked] = useState(() => false);
 
   useEffect(() => {
     async function fetchData() {
@@ -13,7 +14,6 @@ export default function FilmDetailView() {
         const response = await GetFilmByID(filmId);
         if (response.status === 200) {
           setFilm(response.data);
-          console.log(response.data);
         } else {
           throw new Error("Error - " + response.status);
         }
@@ -23,6 +23,8 @@ export default function FilmDetailView() {
       }
     }
     fetchData();
+    let arrFavourite = JSON.parse(localStorage.getItem("data")) ?? [];
+    if (arrFavourite.indexOf(filmId) !== -1) setChecked(true);
   }, [filmId]);
 
   return (
@@ -38,6 +40,8 @@ export default function FilmDetailView() {
           genre={film.genre}
           overview={film.overview}
           date={film.release_date}
+          fav={checked}
+          updateNumberFavFilms={updateNumberFavFilms}
         ></CardFilmDetails>
       )}
     </>

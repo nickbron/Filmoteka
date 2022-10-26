@@ -1,22 +1,14 @@
-import {
-  AppBar,
-  IconButton,
-  Toolbar,
-  Typography,
-  styled,
-  Link,
-} from "@mui/material";
-import TheatersIcon from "@mui/icons-material/Theaters";
+import { AppBar, Toolbar, styled } from "@mui/material";
 import headerBackground from "../../Images/header_desktop.jpg";
-import Navigation from "../Navigation/Navigation";
-import { NavLink } from "react-router-dom";
+import Navigation from "./Navigation/Navigation";
+import Logo from "./Logo/Logo";
 
 const StyledToolBar = styled(Toolbar)({
   display: "flex",
   justifyContent: "space-between",
 });
 
-export default function Header() {
+export default function Header({ numberFavfilms }) {
   return (
     <>
       <AppBar
@@ -24,18 +16,8 @@ export default function Header() {
         position="fixed"
       >
         <StyledToolBar>
-          <Link underline="none" component={NavLink} to="/films">
-            <IconButton edge="start" color="success">
-              <TheatersIcon />
-              <Typography
-                variant="h6"
-                sx={{ display: { xs: "none", sm: "block" } }}
-              >
-                Filmoteka
-              </Typography>
-            </IconButton>
-          </Link>
-          <Navigation />
+          <Logo />
+          <Navigation numberFavfilms={numberFavfilms} />
         </StyledToolBar>
       </AppBar>
     </>

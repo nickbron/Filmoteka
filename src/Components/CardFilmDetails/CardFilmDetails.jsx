@@ -1,7 +1,6 @@
 import { useState } from "react";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import {
@@ -20,17 +19,6 @@ import ActorsView from "Views/ActorsView/ActorsView";
 import ResponsivePlayer from "Components/ResponsivePlayer/ResponsivePlayer";
 import { GetVideoByFilmId } from "Services/api";
 
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
-
 export default function CardFilmDetails({
   idFilm,
   image,
@@ -41,11 +29,26 @@ export default function CardFilmDetails({
   genre,
   overview,
   date,
+  fav,
+  updateNumberFavFilms,
 }) {
+  const ExpandMore = styled((props) => {
+    const { expand, ...other } = props;
+    return <IconButton {...other} />;
+  })(({ theme, expand }) => ({
+    transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest,
+    }),
+  }));
+
   const [expanded, setExpanded] = useState(false);
   const [url, setUrl] = useState(null);
+  const [checked, setChecked] = useState(() => fav);
+  let arrFavourite = JSON.parse(localStorage.getItem("data")) ?? [];
 
-  async function fetchData(id) {
+  async function fetchVideo(id) {
     try {
       const response = await GetVideoByFilmId(id);
       if (response.status === 200) {
@@ -66,7 +69,21 @@ export default function CardFilmDetails({
   };
 
   const handleVideoClick = () => {
-    fetchData(idFilm);
+    fetchVideo(idFilm);
+  };
+
+  const handleCheckFavourite = () => {
+    let idx = arrFavourite.indexOf(idFilm);
+    if (idx !== -1) {
+      arrFavourite.splice(idx, 1);
+      setChecked(false);
+    } else {
+      setChecked(true);
+      arrFavourite.push(idFilm);
+    }
+    localStorage.setItem("data", JSON.stringify(arrFavourite));
+
+    updateNumberFavFilms(arrFavourite.length);
   };
 
   return (
@@ -119,9 +136,11 @@ export default function CardFilmDetails({
           <Checkbox
             icon={<FavoriteBorder />}
             checkedIcon={<Favorite sx={{ color: "red" }} />}
+            onChange={handleCheckFavourite}
+            checked={checked}
           />
         </IconButton>
-        <IconButton onClick={handleVideoClick} aria-label="watch">
+        <IconButton onClick={handleVideoClick} aria-label="watch trailer">
           <YouTubeIcon />
         </IconButton>
         <ExpandMore

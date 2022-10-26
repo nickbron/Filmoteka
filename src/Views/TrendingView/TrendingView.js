@@ -15,6 +15,7 @@ export default function TrendingView() {
         const response = await GetTrendingFilms(page);
         if (response.status === 200) {
           setMovies(response.data.results);
+
           setTotalPages(response.data.total_pages);
         } else {
           throw new Error("Error - " + response.status);

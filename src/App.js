@@ -15,6 +15,7 @@ import SearchView from "Views/SearchView/SearchView";
 
 export default function App() {
   const [mode, setMode] = useState("light");
+  const [numberFavfilms, setNumberFavfilms] = useState("");
   const darkTheme = createTheme({
     palette: {
       mode: mode,
@@ -22,10 +23,14 @@ export default function App() {
     },
   });
 
+  const update = (value) => {
+    setNumberFavfilms(value);
+  };
+
   return (
     <ThemeProvider theme={darkTheme}>
       <Box bgcolor={"background.default"} color={"text.primary"}>
-        <Header />
+        <Header numberFavfilms={numberFavfilms} />
         <Container sx={{ mt: "1rem" }}>
           <Routes>
             <Route path="/" element={<Navigate to="films " />} />
@@ -33,8 +38,14 @@ export default function App() {
             <Route path="search" element={<SearchView />} />
             <Route path="myLibrary" element={<MyLibraryView />} />
             <Route path="*" element={<NotFoundView />} />
-            <Route path="films/:filmId" element={<FilmDetailView />} />
-            <Route path="search/:filmId" element={<FilmDetailView />} />
+            <Route
+              path="films/:filmId"
+              element={<FilmDetailView updateNumberFavFilms={update} />}
+            />
+            <Route
+              path="search/:filmId"
+              element={<FilmDetailView updateNumberFavFilms={update} />}
+            />
           </Routes>
         </Container>
         <Footer description="Created by Balabukh Nick." />
