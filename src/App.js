@@ -43,6 +43,10 @@ export default function App() {
               element={<FilmDetailView updateNumberFavFilms={update} />}
             />
             <Route
+              path="myLibrary/:filmId"
+              element={<FilmDetailView updateNumberFavFilms={update} />}
+            />
+            <Route
               path="search/:filmId"
               element={<FilmDetailView updateNumberFavFilms={update} />}
             />
