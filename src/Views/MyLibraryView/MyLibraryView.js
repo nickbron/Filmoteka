@@ -1,12 +1,10 @@
 import { Grid } from "@mui/material";
-
 import CardFilm from "Components/CardFilm/CardFilm";
 import { useEffect, useRef, useState } from "react";
 import { GetFilmByID } from "Services/api";
 
 export default function MyLibraryView() {
   const [movies, setMovies] = useState([]);
-
   const Ref = useRef(false);
 
   useEffect(() => {
@@ -29,16 +27,18 @@ export default function MyLibraryView() {
     }
     if (Ref.current === false) {
       const filmId = JSON.parse(localStorage.getItem("data"));
-      filmId.forEach((element) => {
-        fetchData(element);
-      });
+      if (filmId) {
+        filmId.forEach((element) => {
+          fetchData(element);
+        });
+      }
       Ref.current = true;
     }
   }, []);
 
   return (
     <>
-      <div>
+      {movies && (
         <Grid container spacing={2} sx={{ mt: "5rem" }}>
           {movies.map((movie) => (
             <CardFilm
@@ -51,7 +51,7 @@ export default function MyLibraryView() {
             ></CardFilm>
           ))}
         </Grid>
-      </div>
+      )}
     </>
   );
 }

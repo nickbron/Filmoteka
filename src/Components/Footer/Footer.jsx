@@ -1,11 +1,7 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import CssBaseline from "@mui/material/CssBaseline";
 import Link from "@mui/material/Link";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import { calculateNewValue } from "@testing-library/user-event/dist/utils";
 
 function Copyright() {
   return (
@@ -30,7 +26,7 @@ export default function Footer({ description }) {
       sx={{
         bgcolor: "ButtonShadow",
         height: 80,
-        mt: 80,
+        mt: 10,
       }}
     >
       <Container maxWidth="lg">
