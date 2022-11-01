@@ -48,7 +48,7 @@ export default function TrendingView() {
               date={movie.release_date}
             ></CardFilm>
           ))}
-          {scrollPosition >> 1000 && <BtnScroll />}
+          {scrollPosition > 500 && <BtnScroll />}
         </Grid>
       )}
 

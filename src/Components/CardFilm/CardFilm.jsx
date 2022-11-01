@@ -17,7 +17,6 @@ export default function CardFilm({ movieId, image, title, genre, date }) {
   const { pathname } = useLocation();
 
   return (
-    // <CardActionArea>
     <Grid item xs={4} md={3}>
       <Link to={`${pathname}/${movieId}`} style={{ textDecoration: "none" }}>
         <Card

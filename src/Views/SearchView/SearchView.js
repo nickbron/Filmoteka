@@ -4,13 +4,15 @@ import CardFilm from "Components/CardFilm/CardFilm";
 import SearchAppBar from "Components/SearchAppBar/SearchAppBar";
 import { SearchFilmByName } from "Services/api";
 import PaginationControlled from "Components/PaginationControlled/PaginationControlled";
-import { Container } from "@mui/system";
+import BtnScroll from "Components/BtnScroll/BtnScroll";
+import useScrollPosition from "Hooks/useScrollPosition";
 
 export default function SearchView() {
   const [movies, setMovies] = useState(null);
   const [filmName, setFilmName] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const scrollPosition = useScrollPosition();
 
   useEffect(() => {
     if (filmName === "") {
@@ -64,6 +66,7 @@ export default function SearchView() {
                 date={movie.release_date}
               ></CardFilm>
             ))}
+            {scrollPosition > 500 && <BtnScroll />}
           </Grid>
         )}
         {movies && (

@@ -1,11 +1,14 @@
 import { Grid } from "@mui/material";
+import BtnScroll from "Components/BtnScroll/BtnScroll";
 import CardFilm from "Components/CardFilm/CardFilm";
+import useScrollPosition from "Hooks/useScrollPosition";
 import { useEffect, useRef, useState } from "react";
 import { GetFilmByID } from "Services/api";
 
 export default function MyLibraryView() {
   const [movies, setMovies] = useState([]);
   const Ref = useRef(false);
+  const scrollPosition = useScrollPosition();
 
   useEffect(() => {
     async function fetchData(idFilm) {
@@ -50,6 +53,7 @@ export default function MyLibraryView() {
               date={movie.release_date}
             ></CardFilm>
           ))}
+          {scrollPosition > 500 && <BtnScroll />}
         </Grid>
       )}
     </>
