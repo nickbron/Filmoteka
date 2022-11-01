@@ -37,10 +37,12 @@ export default function FilmDetailView({ updateNumberFavFilms }) {
           vote={film.vote_average}
           votes={film.vote_count}
           popularity={film.popularity}
-          genre={film.genre}
+          genre={film.genres}
           overview={film.overview}
           date={film.release_date}
           fav={checked}
+          runtime={film.runtime}
+          backdrop={film.backdrop_path}
           updateNumberFavFilms={updateNumberFavFilms}
         ></CardFilmDetails>
       )}

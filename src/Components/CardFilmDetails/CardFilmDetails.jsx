@@ -14,6 +14,8 @@ import {
   IconButton,
   Card,
   styled,
+  Backdrop,
+  Divider,
 } from "@mui/material";
 import ActorsView from "Views/ActorsView/ActorsView";
 import ResponsivePlayer from "Components/ResponsivePlayer/ResponsivePlayer";
@@ -30,6 +32,8 @@ export default function CardFilmDetails({
   overview,
   date,
   fav,
+  runtime,
+  backdrop,
   updateNumberFavFilms,
 }) {
   const ExpandMore = styled((props) => {
@@ -86,6 +90,17 @@ export default function CardFilmDetails({
     updateNumberFavFilms(arrFavourite.length);
   };
 
+  const allGenres = genre
+    .map((item) => item.name)
+    .join(", ")
+    .toLowerCase();
+
+  const getTimeFromMins = (mins) => {
+    let hours = Math.trunc(mins / 60);
+    let minutes = mins % 60;
+    return hours + "h." + minutes + "m.";
+  };
+
   return (
     <Card
       sx={{
@@ -110,24 +125,44 @@ export default function CardFilmDetails({
         </Box>
 
         <CardContent>
-          <Typography paragraph variant="h4" component="h1">
-            {title} ({new Date(date).getFullYear()})
-          </Typography>
-          <Typography paragraph variant="h6" component="h2">
-            Vote/Votes: {vote} / {votes}
-          </Typography>
-          <Typography paragraph variant="h6" component="h2">
-            Popularity: {popularity}
-          </Typography>
-          <Typography paragraph variant="h6" component="h2">
-            Original Title: {title}
-          </Typography>
-          <Typography paragraph variant="h6" component="h2">
-            Genre:
-          </Typography>
-          <Typography variant="body1" align="justify" color="text.secondary">
-            {overview}
-          </Typography>
+          <Box display="flex" flexDirection="column" alignItems="center">
+            <Typography variant="h4">
+              {title} ({new Date(date).getFullYear()})
+            </Typography>
+            <Typography variant="h6" gutterBottom>
+              {allGenres} ({getTimeFromMins(runtime)})
+            </Typography>
+          </Box>
+
+          <Divider />
+          <Box display="flex" justifyContent={"space-around"}>
+            <Box display="flex" alignItems="baseline">
+              <Typography variant="h6" gutterBottom>
+                Vote/Votes:{" "}
+              </Typography>
+              <Typography variant="subtitle2" paddingLeft={1} gutterBottom>
+                {vote} / {votes}
+              </Typography>
+            </Box>
+            <Box display="flex" alignItems="baseline">
+              <Typography variant="h6" gutterBottom>
+                {" "}
+                Popularity:{" "}
+              </Typography>
+              <Typography variant="subtitle2" paddingLeft={1} gutterBottom>
+                {popularity}
+              </Typography>
+            </Box>
+          </Box>
+          <Box paddingTop={3}>
+            <Typography
+              variant="OVERLINE TEXT"
+              align="justify"
+              color="text.secondary"
+            >
+              {overview}
+            </Typography>
+          </Box>
         </CardContent>
       </Card>
       {url && <ResponsivePlayer url={url} />}
