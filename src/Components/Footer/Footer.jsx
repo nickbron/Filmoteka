@@ -2,6 +2,7 @@ import * as React from "react";
 import Link from "@mui/material/Link";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
+import { Box } from "@mui/material";
 
 function Copyright() {
   return (
@@ -21,12 +22,13 @@ function Copyright() {
 
 export default function Footer({ description }) {
   return (
-    <Typography
+    <Box
       component="footer"
       sx={{
         bgcolor: "ButtonShadow",
-        height: 80,
-        mt: 10,
+        mt: "1rem",
+        width: "100%",
+        padding: "8px",
       }}
     >
       <Container maxWidth="lg">
@@ -42,6 +44,6 @@ export default function Footer({ description }) {
           {description}
         </Typography>
       </Container>
-    </Typography>
+    </Box>
   );
 }

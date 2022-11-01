@@ -1,4 +1,12 @@
-import { Card, CardContent, CardMedia, Grid, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Grid,
+  Typography,
+  CardActionArea,
+} from "@mui/material";
+
 import { Link, useLocation } from "react-router-dom";
 import noImage from "../../Images/noImage.jpg";
 
@@ -9,9 +17,16 @@ export default function CardFilm({ movieId, image, title, genre, date }) {
   const { pathname } = useLocation();
 
   return (
-    <Grid item xs={6} md={3}>
+    // <CardActionArea>
+    <Grid item xs={4} md={3}>
       <Link to={`${pathname}/${movieId}`} style={{ textDecoration: "none" }}>
-        <Card sx={{ height: "100%", bgcolor: "ButtonShadow", boxShadow: 3 }}>
+        <Card
+          sx={{
+            height: "100%",
+            bgcolor: "ButtonShadow",
+            boxShadow: 3,
+          }}
+        >
           <CardMedia
             component="img"
             height="auto"
@@ -21,16 +36,17 @@ export default function CardFilm({ movieId, image, title, genre, date }) {
           />
           <CardContent>
             <Typography
-              variant="h5"
+              variant="subtitle2"
               gutterBottom
               textAlign="center"
               fontStyle="oblique"
+              noWrap
             >
               {title}
             </Typography>
             <Typography
               display="block"
-              variant="h7"
+              variant="body2"
               color="text.secondary"
               textAlign="center"
             >

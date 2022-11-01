@@ -1,9 +1,10 @@
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { useState, useEffect } from "react";
 import CardFilm from "Components/CardFilm/CardFilm";
 import SearchAppBar from "Components/SearchAppBar/SearchAppBar";
 import { SearchFilmByName } from "Services/api";
 import PaginationControlled from "Components/PaginationControlled/PaginationControlled";
+import { Container } from "@mui/system";
 
 export default function SearchView() {
   const [movies, setMovies] = useState(null);
@@ -43,28 +44,36 @@ export default function SearchView() {
   return (
     <>
       <SearchAppBar onSearch={handleSubmit} />
-
-      {movies && (
-        <Grid container spacing={2} sx={{ mt: "1rem" }}>
-          {movies.map((movie) => (
-            <CardFilm
-              key={movie.id}
-              movieId={movie.id}
-              image={movie.poster_path}
-              title={movie.title}
-              genre={movie.genre_ids}
-              date={movie.release_date}
-            ></CardFilm>
-          ))}
-        </Grid>
-      )}
-      {movies && (
-        <PaginationControlled
-          count={totalPages}
-          onPage={handleChange}
-          page={page}
-        />
-      )}
+      <Grid
+        sx={
+          {
+            // height: "calc(100vh - 80px)",
+            // height: "550px",
+          }
+        }
+      >
+        {movies && (
+          <Grid container spacing={2} sx={{ mt: "1rem" }}>
+            {movies.map((movie) => (
+              <CardFilm
+                key={movie.id}
+                movieId={movie.id}
+                image={movie.poster_path}
+                title={movie.title}
+                genre={movie.genre_ids}
+                date={movie.release_date}
+              ></CardFilm>
+            ))}
+          </Grid>
+        )}
+        {movies && (
+          <PaginationControlled
+            count={totalPages}
+            onPage={handleChange}
+            page={page}
+          />
+        )}
+      </Grid>
     </>
   );
 }

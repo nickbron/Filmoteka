@@ -55,7 +55,6 @@ export default function SearchAppBar({ onSearch }) {
         onClose={() => {
           setOpenAlert(false);
         }}
-        // message="Note archived"
       >
         <Alert severity="error">Please Enter Film Name!</Alert>
       </Snackbar>

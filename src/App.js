@@ -31,7 +31,13 @@ export default function App() {
     <ThemeProvider theme={darkTheme}>
       <Box bgcolor={"background.default"} color={"text.primary"}>
         <Header numberFavfilms={numberFavfilms} />
-        <Container sx={{ mt: "1rem" }}>
+        <Container
+          sx={{
+            minHeight: "100vh",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
           <Routes>
             <Route path="/" element={<Navigate to="films " />} />
             <Route path="films" element={<TrendingView />} />
@@ -52,7 +58,11 @@ export default function App() {
             />
           </Routes>
         </Container>
-        <Footer description="Created by Balabukh Nick." />
+        <Box
+          sx={{ minheight: "100vh", display: "flex", flexdirection: "column" }}
+        >
+          <Footer description="Created by Balabukh Nick." />
+        </Box>
       </Box>
     </ThemeProvider>
   );
