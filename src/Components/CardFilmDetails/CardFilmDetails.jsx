@@ -16,6 +16,7 @@ import {
   styled,
   Backdrop,
   Divider,
+  Rating,
 } from "@mui/material";
 import ActorsView from "Views/ActorsView/ActorsView";
 import ResponsivePlayer from "Components/ResponsivePlayer/ResponsivePlayer";
@@ -135,22 +136,12 @@ export default function CardFilmDetails({
           </Box>
 
           <Divider />
-          <Box display="flex" justifyContent={"space-around"}>
+
+          <Box display="flex" justifyContent={"space-between"}>
+            <Rating defaultValue={(vote * 10) / 20} precision={0.25} readOnly />
             <Box display="flex" alignItems="baseline">
-              <Typography variant="h6" gutterBottom>
-                Vote/Votes:{" "}
-              </Typography>
-              <Typography variant="subtitle2" paddingLeft={1} gutterBottom>
-                {vote} / {votes}
-              </Typography>
-            </Box>
-            <Box display="flex" alignItems="baseline">
-              <Typography variant="h6" gutterBottom>
-                {" "}
-                Popularity:{" "}
-              </Typography>
-              <Typography variant="subtitle2" paddingLeft={1} gutterBottom>
-                {popularity}
+              <Typography variant="subtitle2" gutterBottom>
+                {vote} / {votes} votes
               </Typography>
             </Box>
           </Box>
