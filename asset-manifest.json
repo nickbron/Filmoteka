@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/filmoteka/static/css/main.e6c13ad2.css",
-    "main.js": "/filmoteka/static/js/main.ceed5ee3.js",
+    "main.js": "/filmoteka/static/js/main.b8c1583e.js",
     "reactPlayerYouTube.js": "/filmoteka/static/js/reactPlayerYouTube.372bc9b7.chunk.js",
     "reactPlayerSoundCloud.js": "/filmoteka/static/js/reactPlayerSoundCloud.449ffe4b.chunk.js",
     "reactPlayerVimeo.js": "/filmoteka/static/js/reactPlayerVimeo.6d966114.chunk.js",
@@ -19,7 +19,7 @@
     "static/media/header_desktop.jpg": "/filmoteka/static/media/header_desktop.9e033ca79b50211d68e8.jpg",
     "index.html": "/filmoteka/index.html",
     "main.e6c13ad2.css.map": "/filmoteka/static/css/main.e6c13ad2.css.map",
-    "main.ceed5ee3.js.map": "/filmoteka/static/js/main.ceed5ee3.js.map",
+    "main.b8c1583e.js.map": "/filmoteka/static/js/main.b8c1583e.js.map",
     "reactPlayerYouTube.372bc9b7.chunk.js.map": "/filmoteka/static/js/reactPlayerYouTube.372bc9b7.chunk.js.map",
     "reactPlayerSoundCloud.449ffe4b.chunk.js.map": "/filmoteka/static/js/reactPlayerSoundCloud.449ffe4b.chunk.js.map",
     "reactPlayerVimeo.6d966114.chunk.js.map": "/filmoteka/static/js/reactPlayerVimeo.6d966114.chunk.js.map",
@@ -36,6 +36,6 @@
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.ceed5ee3.js"
+    "static/js/main.b8c1583e.js"
   ]
 }
